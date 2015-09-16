@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Ascendency Ship Analyzer</title>
+
+	<meta name="description" content="Ascendency Ship Analyzer - Evaluate ship builds in Ascendency." />
+	<meta name="author" content="Ken Sugiura" />
+
+	<!--Libraries-->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.ascend.min.css" />
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<!--AscendShipCalc-->
+	<link type="text/css" rel="stylesheet" href="css/ascendshipui.css" />
+	<script type="text/javascript" src="js/ascendshipdata.js"></script>
+	<script type="text/javascript" src="js/ascendshipimg.js"></script>
+	<script type="text/javascript" src="js/ascendshipui.js"></script>
+
+</head>
+
+<body>
+
+	<header class="page-header container-fluid">
+		<h1>Ascendency Ship Analyzer</h1>
+	</header>
+
+	<div class="page-body container-fluid" id="ascend-main">
+
+		<div class="row">
+
+			<div class="col-sm-6 col-md-4 col-lg-4">
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-ship-display-levels">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-ship-display-levels"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-ship-display-levels"
+		>Ship Ratings</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-ship-display-levels"
+		id="ascend-collapse-ship-display-levels"
+	>
+		<div class="panel-body">
+			<table class="display-table ship-display-levels">
+				<tbody>
+					<tr>
+						<td>Attack</td>
+						<td id="ascend-ship-levels-weapon"></td>
+						<td id="ascend-ship-levels-icons-weapon"></td>
+					</tr>
+					<tr>
+						<td>Shield</td>
+						<td id="ascend-ship-levels-shield"></td>
+						<td id="ascend-ship-levels-icons-shield"></td>
+					</tr>
+					<tr>
+						<td>Engine</td>
+						<td id="ascend-ship-levels-engine"></td>
+						<td id="ascend-ship-levels-icons-engine"></td>
+					</tr>
+					<tr>
+						<td>Scanner</td>
+						<td id="ascend-ship-levels-scanner"></td>
+						<td id="ascend-ship-levels-icons-scanner"></td>
+					</tr>
+					<tr>
+						<td>Power</td>
+						<td id="ascend-ship-levels-power"></td>
+						<td id="ascend-ship-levels-icons-power"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-ship-display-stats">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-ship-display-stats"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-ship-display-stats"
+		>Ship Stats</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-ship-display-stats"
+		id="ascend-collapse-ship-display-stats"
+	>
+		<div class="panel-body">
+			<table class="display-table ship-display-stats">
+				<tbody>
+					<tr>
+						<td>Industry Cost</td>
+						<td id="ascend-ship-stats-cost"></td>
+					</tr>
+					<tr>
+						<td>Hit Points</td>
+						<td id="ascend-ship-stats-health"></td>
+					</tr>
+					<tr>
+						<td>Max Shield Duration</td>
+						<td><span id="ascend-ship-stats-shield-time"></span>&nbsp;turns</td>
+					</tr>
+					<tr>
+						<td>Max Distance Traversable</td>
+						<td><span id="ascend-ship-stats-move-max"></span>&nbsp;cubes</td>
+					</tr>
+					<tr>
+						<td>Weapon Efficency</td>
+						<td><span id="ascend-ship-stats-weapon-eff"></span>&nbsp;<div class="levels-icon icon-inline weapon"></div>&nbsp;per&nbsp;<div class="levels-icon icon-inline power"></div></td>
+					</tr>
+					<tr>
+						<td>Shield Efficency</td>
+						<td><span id="ascend-ship-stats-shield-eff"></span>&nbsp;<div class="levels-icon icon-inline shield"></div>&nbsp;per&nbsp;<div class="levels-icon icon-inline power"></div></td>
+					</tr>
+					<tr>
+						<td>Engine Efficency</td>
+						<td><span id="ascend-ship-stats-engine-eff"></span>&nbsp;<div class="levels-icon icon-inline engine"></div>&nbsp;per&nbsp;<div class="levels-icon icon-inline power"></div></td>
+					</tr>
+					<tr>
+						<td>Scanner Efficency</td>
+						<td><span id="ascend-ship-stats-scanner-eff"></span>&nbsp;cubes per turn</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-ship-display-combat">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-ship-display-combat"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-ship-display-combat"
+		>Ship Combat Potential</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-ship-display-combat"
+		id="ascend-collapse-ship-display-combat"
+	>
+		<div class="panel-body">
+			<table class="display-table ship-display-combat">
+				<tbody>
+					<tr>
+						<td>Replenishers</td>
+						<td id="ascend-ship-combat-replenish"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Max Attack Power</td>
+						<td id="ascend-ship-combat-attack-max"></td>
+						<td id="ascend-ship-combat-icons-attack-max"></td>
+					</tr>
+					<tr>
+						<td>Max Attack Power + Replenishes</td>
+						<td id="ascend-ship-combat-attack-replenish"></td>
+						<td id="ascend-ship-combat-icons-attack-replenish"></td>
+					</tr>
+					<tr>
+						<td>Max Power Usage</td>
+						<td id="ascend-ship-combat-power-max"></td>
+						<td id="ascend-ship-combat-icons-power-max"></td>
+					</tr>
+					<tr>
+						<td>Max Power Usage + Replenishes</td>
+						<td id="ascend-ship-combat-power-replenish"></td>
+						<td id="ascend-ship-combat-icons-power-replenish"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-ship-display-power">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-ship-display-power"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-ship-display-power"
+		>Ship Special Comp. Power Usage</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-ship-display-power"
+		id="ascend-collapse-ship-display-power"
+	>
+		<div class="panel-body">
+			<table class="display-table ship-display-power">
+				<tbody id="ascend-ship-special-power"></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+			</div>
+
+			<div class="col-sm-6 col-md-8 col-lg-8">
+				<div class="row">
+
+					<div class="col-md-7 col-lg-6">
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-component-display-info">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-component-display-info"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-component-display-info"
+		>Component Info</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-component-display-info"
+		id="ascend-collapse-component-display-info"
+	>
+		<div class="panel-body">
+			<div class="component-selected-item-display"
+				id="ascend-component-menu-selected-display"></div>
+			<button type="button" class="btn btn-default btn-xs"
+				data-toggle="popover" data-placement="right"
+				id="ascend-component-menu-selected-desc">Description</button>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-ship-build">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-ship-build"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-ship-build"
+		>Ship Build</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-ship-build"
+		id="ascend-collapse-ship-build"
+	>
+		<div class="panel-body">
+			<div class="container-fluid">
+				<div class="row row-bottom-buffer form-inline">
+					<div class="btn-group dropdown">
+						<button class="btn btn-default dropdown-toggle"
+							type="button" data-toggle="dropdown"
+						>
+							Hull Size:&nbsp;
+							<span id="ascend-ship-hull-size"></span>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" id="ascend-ship-hull-select"></ul>
+					</div>
+					<button type="button" class="btn btn-default"
+						id="ascend-ship-clear">Clear</button>
+				</div>
+				<div class="row ship-component-slots"
+					id="ascend-ship-component-slots-arr"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+					</div>
+
+					<div class="col-md-5 col-lg-6">
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="ascend-heading-component-menu">
+		<a data-toggle="collapse"
+			data-target="#ascend-collapse-component-menu"
+			aria-expanded="true"
+			aria-controls="ascend-collapse-component-menu"
+		>Components Menu</a>
+	</div>
+	<div class="panel-collapse collapse in" role="tabpanel"
+		aria-labelledby="ascend-heading-component-menu"
+		id="ascend-collapse-component-menu"
+	>
+		<div class="panel-body">
+			<div class="btn-group component-menu-groups" role="group"
+				aria-label="Component Categories" id="ascend-component-groups"
+			>
+				<button type="button" class="btn btn-default" id="ascend-component-group-all">
+					<div class="groups-icon all"></div>
+					<div class="groups-name">All</div>
+				</button>
+				<button type="button" class="btn btn-default" id="ascend-component-group-weapon">
+					<div class="groups-icon weapon"></div>
+					<div class="groups-name">Weapons</div>
+				</button>
+				<button type="button" class="btn btn-default" id="ascend-component-group-shield">
+					<div class="groups-icon shield"></div>
+					<div class="groups-name">Shields</div>
+				</button>
+				<button type="button" class="btn btn-default" id="ascend-component-group-engine">
+					<div class="groups-icon engine"></div>
+					<div class="groups-name">Engines</div>
+				</button>
+				<button type="button" class="btn btn-default" id="ascend-component-group-scanner">
+					<div class="groups-icon scanner"></div>
+					<div class="groups-name">Scanners</div>
+				</button>
+				<button type="button" class="btn btn-default" id="ascend-component-group-power">
+					<div class="groups-icon power"></div>
+					<div class="groups-name">Generators</div>
+				</button>
+				<button type="button" class="btn btn-default" id="ascend-component-group-special">
+					<div class="groups-icon special"></div>
+					<div class="groups-name">Special Components</div>
+				</button>
+			</div>
+			<div class="container-fluid well component-menu-items"
+				id="ascend-component-menu-items-arr"></div>
+		</div>
+	</div>
+</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,271 @@
+/*!
+ *
+ * Ascendency Ship Analyzer
+ *
+ * Analyze ship builds in the game Ascendency.
+ *
+ */
+
+/* Override Default */
+
+body {
+	background-color : #0c2030;
+	color : #eee;
+}
+
+/* Override Bootstrap */
+
+	/* Header */
+
+.page-header {
+	margin-top : 0;
+	padding : 3px 10px;
+	background-color : #000;
+	border-bottom : 2px solid #456da2;
+}
+
+	/* Inputs */
+
+.btn-default {
+	margin : 2px 0;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+	background-color : #eee;
+	border-color : #456da2;
+	color : #456da2;
+}
+
+.btn-default:active {
+	background-color : #456da2;
+	color : #eee;
+}
+
+	/* Panels and Wells */
+
+.panel {
+	margin-bottom : 10px;
+}
+
+.panel-default {
+	border-width : 2px;
+}
+
+.panel-heading {
+	padding-top :    2px;
+	padding-bottom : 2px;
+}
+
+.panel-heading > a {
+	color : #eee;
+}
+
+/* Custom */
+
+.row-bottom-buffer {
+	margin-bottom : 5px;
+}
+
+.levels-icon,
+.groups-icon,
+.component-sprite {
+	display  : block;
+	float    : left;
+	overflow : hidden;
+	background-repeat : no-repeat;
+}
+
+    /* Icons */
+
+.levels-icon {
+	width  : 14px;
+	height : 14px;
+	background-image : url('../img/levels-icons.png');
+}
+
+.levels-icon.frac-1-4 {width :  3px;}
+.levels-icon.frac-1-2 {width :  7px;}
+.levels-icon.frac-3-4 {width : 10px;}
+
+.levels-icon.weapon  {background-position: 0px   0px;}
+.levels-icon.shield  {background-position: 0px -14px;}
+.levels-icon.engine  {background-position: 0px -28px;}
+.levels-icon.scanner {background-position: 0px -42px;}
+.levels-icon.power   {background-position: 0px -56px;}
+
+.groups-icon {
+	width  : 31px;
+	height : 31px;
+	background-image : url('../img/groups-icons.png');
+}
+
+.groups-icon.all     {background-position:    0px 0px;}
+.groups-icon.weapon  {background-position:  -31px 0px;}
+.groups-icon.shield  {background-position:  -62px 0px;}
+.groups-icon.engine  {background-position:  -93px 0px;}
+.groups-icon.scanner {background-position: -124px 0px;}
+.groups-icon.power   {background-position: -155px 0px;}
+.groups-icon.special {background-position: -186px 0px;}
+.groups-icon.hull    {background-position: -287px 0px; width : 70px;}
+
+.icon-inline {
+	display : inline-block;
+	float   : none;
+}
+
+	/* Components */
+
+		/* Component Sprites */
+
+.component-display {
+	width    : 74px;
+	display  : block;
+	float    : left;
+	position : relative;
+}
+
+.component-display.labeled {
+	margin : 0 5px;
+}
+
+.component-display.labeled > .component-sprite {
+	margin-top : 12px;
+}
+
+.component-sprite {
+	width  : 74px;
+	height : 56px;
+	background-image : url('../img/components.png');
+}
+
+.component-name {
+	width : 116%;
+	position : absolute;
+	margin : 0 -8%;
+	color : #eee;
+	font-size : 12px;
+	line-height : 85%;
+	text-align : center;
+}
+
+.component-name > small {
+	background-color : rgba(0, 0, 0, 0.6);
+}
+
+.component-info {
+	float : left;
+	width : 100%;
+}
+
+.component-info-half {
+	float : left;
+	width : 50%;
+	padding : 0 3px;
+}
+
+		/* Component Menu */
+
+.component-menu-items {
+	height : 250px;
+	overflow-y : auto;
+}
+
+.component-menu-item {
+	display : none;
+}
+
+.component-menu-items[data-group-name='all']     > .component-menu-item,
+.component-menu-items[data-group-name='weapon']  > .component-menu-item.weapon,
+.component-menu-items[data-group-name='shield']  > .component-menu-item.shield,
+.component-menu-items[data-group-name='engine']  > .component-menu-item.engine,
+.component-menu-items[data-group-name='scanner'] > .component-menu-item.scanner,
+.component-menu-items[data-group-name='power']   > .component-menu-item.power,
+.component-menu-items[data-group-name='special'] > .component-menu-item.special,
+.component-menu-item.none {
+	display : block;
+}
+
+.component-selected-item-display {
+	width : 100%;
+	padding-left : 80px;
+}
+
+.component-selected-item-display > .component-display-left-col {
+	float : left;
+	width : 80px;
+	margin-left : -80px;
+}
+
+.component-selected-item-display > .component-display-main-col {
+	float : left;
+	width : 100%;
+}
+
+.component-menu-groups {}
+
+.component-menu-groups > .btn.btn-default {
+	padding : 0 5px;
+}
+
+.groups-name {
+	display : none;
+	position : absolute;
+	top  : 36px;
+	left : -1px;
+	padding : 0 10px;
+	border : inherit;
+	border-radius : 4px;
+	background-color : inherit;
+}
+
+.component-menu-groups > .btn-default:hover > .groups-name {
+	display : block;
+}
+
+		/* Ship Components */
+
+.ship-component-slots {
+	max-width : 370px;
+	padding : 10px 1px;
+}
+
+.component-menu-items > component-menu-item > .component-display,
+.ship-component-slot {
+	float : left;
+	position : relative;
+	margin : -10px -1px;
+	font-size : 12px;
+}
+
+	/* Display Tables */
+
+.display-table {
+	width : 100%;
+    border-bottom : 1px solid #333;
+	table-layout : fixed;
+}
+
+.display-table td {
+	padding : 3px 5px 0px 5px;
+	vertical-align : top;
+	border-top : 1px solid #333;
+	font-size : 12px;
+}
+
+.ship-display-levels    td:first-child,
+.ship-display-stats     td:first-child,
+.ship-display-combat    td:first-child,
+.ship-display-power     td:first-child {width : 135px;}
+.component-display-info td:first-child {width : 75px;}
+
+.ship-display-levels    td:nth-child(2),
+.ship-display-combat    td:nth-child(2),
+.ship-display-power     td:nth-child(2),
+.component-display-info td:nth-child(2) {width : 35px;}
+
+.display-table td:first-child  {padding-left  : 0;}
+.display-table td:last-child   {padding-right : 0;}
