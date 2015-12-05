@@ -6,16 +6,16 @@
  *
  */
 
-/* Override Default */
+/* //// Override Default //// */
 
 body {
 	background-color : #0c2030;
 	color : #eee;
 }
 
-/* Override Bootstrap */
+/* //// Override Bootstrap //// */
 
-	/* Header */
+/* Header */
 
 .page-header {
 	margin-top : 0;
@@ -24,7 +24,7 @@ body {
 	border-bottom : 2px solid #456da2;
 }
 
-	/* Inputs */
+/* Inputs */
 
 .btn-default {
 	margin : 2px 0;
@@ -45,7 +45,7 @@ body {
 	color : #eee;
 }
 
-	/* Panels and Wells */
+/* Panels and Wells */
 
 .panel {
 	margin-bottom : 10px;
@@ -64,7 +64,7 @@ body {
 	color : #eee;
 }
 
-/* Custom */
+/* //// Custom //// */
 
 .row-bottom-buffer {
 	margin-bottom : 5px;
@@ -79,7 +79,7 @@ body {
 	background-repeat : no-repeat;
 }
 
-    /* Icons */
+/* Icons */
 
 .levels-icon {
 	width  : 14px;
@@ -117,9 +117,9 @@ body {
 	float   : none;
 }
 
-	/* Components */
+/* //// Components //// */
 
-		/* Component Sprites */
+/* Component Sprites */
 
 .component-display {
 	width    : 74px;
@@ -167,7 +167,7 @@ body {
 	padding : 0 3px;
 }
 
-		/* Component Menu */
+/* Component Menu */
 
 .component-menu-items {
 	height : 250px;
@@ -226,7 +226,7 @@ body {
 	display : block;
 }
 
-		/* Ship Components */
+/* Ship Components */
 
 .ship-component-slots {
 	max-width : 370px;
@@ -241,7 +241,7 @@ body {
 	font-size : 12px;
 }
 
-	/* Display Tables */
+/* //// Display Tables //// */
 
 .display-table {
 	width : 100%;
